@@ -154,8 +154,8 @@ function moveCameraOut() {
   buttonOut.className = 'text-green-600 border-4 border-green-600  bg-blue-600 inline-block py-1 rounded-full px-8'
 }
 
-const buttonEnter = document.getElementById('enterButton');
-const buttonGithub = document.getElementById('githubButton')
+// const buttonEnter = document.getElementById('enterButton');
+// const buttonGithub = document.getElementById('githubButton')
 
 //load state for buttons
 const btnDown = 'text-green-600 border-4 border-green-600 bg-yellow-400 inline-block py-1 rounded-full px-4'
@@ -174,17 +174,17 @@ buttonRight.className = btnRight
 buttonUp.className = btnUp
 buttonIn.className = btnIn
 buttonOut.className = btnOut
-buttonEnter.className = btnEnter
-buttonGithub.className = btnGithub
+// buttonEnter.className = btnEnter
+// buttonGithub.className = btnGithub
 
-repeatWhileMouseOver(buttonEnter, blueEnter, 10)
-function blueEnter() {
-  enterButton.className = 'text-green-600 bg-blue-600 font-bold text-center border-4 border-green-600 inline-block text-2xl px-4 rounded-full'
-}
-repeatWhileMouseOver(buttonGithub, blueGithub, 10)
-function blueGithub() {
-  githubButton.className = 'text-green-600 bg-blue-600 font-bold text-center border-4 border-green-600 inline-block text-2xl px-4 rounded-full'
-}
+// repeatWhileMouseOver(buttonEnter, blueEnter, 10)
+// function blueEnter() {
+//   enterButton.className = 'text-green-600 bg-blue-600 font-bold text-center border-4 border-green-600 inline-block text-2xl px-4 rounded-full'
+// }
+// repeatWhileMouseOver(buttonGithub, blueGithub, 10)
+// function blueGithub() {
+//   githubButton.className = 'text-green-600 bg-blue-600 font-bold text-center border-4 border-green-600 inline-block text-2xl px-4 rounded-full'
+// }
 
 //Hover Controls for Camera Controls
 function repeatWhileMouseOver(element, action, milliseconds) {
@@ -200,8 +200,8 @@ function repeatWhileMouseOver(element, action, milliseconds) {
     buttonUp.className = btnUp
     buttonIn.className = btnIn
     buttonOut.className = btnOut
-    buttonEnter.className = btnEnter
-    buttonGithub.className = btnGithub
+    // buttonEnter.className = btnEnter
+    // buttonGithub.className = btnGithub
     clearInterval(interval);
   });
 }
@@ -313,17 +313,17 @@ tableLegVisualBody.quaternion.copy(tableLegBody.quaternion)
 //Drop Markers Make 2 Drop Tile Markers for Scoring Points
 const dropSphereGeopmetry = new THREE.SphereGeometry(sphereSize, 15, 15)
 const dropRedSphereMaterial = new THREE.MeshPhysicalMaterial({ 
-  color: 0xff0000,
-  transparent: true,
+  color: 0xe44b8d,
+  // transparent: true,
   metalness: 0.1,
-  opacity: 1,
+  // opacity: 1,
   roughness: 0.4,
 })
 const dropBlueSphereMaterial = new THREE.MeshPhysicalMaterial({ 
-  color: 0x0000ff,   
-  transparent: true,
+  color: 0xe44b8d,   
+  // transparent: true,
   metalness: 0.1,
-  opacity: 0.3,
+  // opacity: 0.3,
   roughness: 0.4,
 })
 let redDrop = new THREE.Mesh(dropSphereGeopmetry, dropRedSphereMaterial)
@@ -453,19 +453,19 @@ function getCenterOfTopBlock(){
     resetButtonPressed = true
     gameOver = true
     explodeTower()
-    if (redsScore > bluesScore){
-      gameMessage.innerHTML = "RED WINS - BLUE DROOLS!"
-      gameMessage.className = "float-left text-red-600 text-xl font-bold"
-      gameInfo.className = "float-right text-yellow-400 font-bold text-2xl"
-    }else if (redsScore < bluesScore){
-      gameMessage.innerHTML = "BLUE WINS - BETTER LUCK NEXT TIME RED!"
-      gameMessage.className = "float-left text-blue-600 text-xl font-bold"
-      gameInfo.className = "float-right text-yellow-400 font-bold text-2xl"
-    }else{
-      gameMessage.innerHTML = "DRAW - PLAY AGAIN?"
-      gameMessage.className = "float-left text-yellow-400 text-xl font-bold"
-      gameInfo.className = "float-right text-yellow-400 font-bold text-2xl"
-    }
+    // if (redsScore > bluesScore){
+    //   gameMessage.innerHTML = "RED WINS - BLUE DROOLS!"
+    //   gameMessage.className = "float-left text-red-600 text-xl font-bold"
+    //   gameInfo.className = "float-right text-yellow-400 font-bold text-2xl"
+    // }else if (redsScore < bluesScore){
+    //   gameMessage.innerHTML = "BLUE WINS - BETTER LUCK NEXT TIME RED!"
+    //   gameMessage.className = "float-left text-blue-600 text-xl font-bold"
+    //   gameInfo.className = "float-right text-yellow-400 font-bold text-2xl"
+    // }else{
+    //   gameMessage.innerHTML = "DRAW - PLAY AGAIN?"
+    //   gameMessage.className = "float-left text-yellow-400 text-xl font-bold"
+    //   gameInfo.className = "float-right text-yellow-400 font-bold text-2xl"
+    // }
   }
 }
 
@@ -740,18 +740,18 @@ window.addEventListener('pointerdown', event => {
           blueDroppability = true;
       };
     }
-    if ( redDroppability == true && redsTurn == true && gameOver == false ){
-      redsTurn = false
-      gameMessage.innerHTML = "BLUE'S TURN"
-      gameMessage.className = "float-right text-blue-900 text-xl font-bold"
-      gameInfo.className = "float-left text-yellow-400 font-bold text-2xl"
-      gameInfo.addEventListener("mouseover", ()=>{ gameInfo.className = "float-left text-blue-600 font-bold text-2xl" })
-      gameInfo.addEventListener("mouseout", ()=>{ gameInfo.className = "float-left text-yellow-400 font-bold text-2xl" })
+    if ( redDroppability == true && gameOver == false ){
+      // redsTurn = false
+      // gameMessage.innerHTML = "BLUE'S TURN"
+      // gameMessage.className = "float-right text-blue-900 text-xl font-bold"
+      // gameInfo.className = "float-left text-yellow-400 font-bold text-2xl"
+      // gameInfo.addEventListener("mouseover", ()=>{ gameInfo.className = "float-left text-blue-600 font-bold text-2xl" })
+      // gameInfo.addEventListener("mouseout", ()=>{ gameInfo.className = "float-left text-yellow-400 font-bold text-2xl" })
 
-      redScore.className = "m-auto text-red-600 text-2xl font-bold"
-      blueScore.className = "m-auto text-blue-900 text-2xl font-bold border-4 border-blue-900 rounded-lg px-2"
-      dropBlueSphereMaterial.opacity = 1
-      dropRedSphereMaterial.opacity = .3
+      // redScore.className = "m-auto text-red-600 text-2xl font-bold"
+      // blueScore.className = "m-auto text-blue-900 text-2xl font-bold border-4 border-blue-900 rounded-lg px-2"
+      // dropBlueSphereMaterial.opacity = 1
+      // dropRedSphereMaterial.opacity = .3
       draggable.geometry.dispose
       draggable.material.dispose
       scene.remove( draggable )
@@ -761,20 +761,21 @@ window.addEventListener('pointerdown', event => {
         redDroppability = false
       }, 10)
       redsScore += adjustedPoints
-      redScore.innerHTML = "RED: " + redsScore
+      blueScore.innerHTML = redsScore
+      // redScore.innerHTML = "RED: " + redsScore
     }
-    if ( blueDroppability == true && redsTurn == false && gameOver == false ){
-      redsTurn = true
-      gameMessage.innerHTML = "RED'S TURN"
-      gameMessage.className = "float-left text-red-600 text-xl font-bold"
-      gameInfo.className = "float-right text-yellow-400 font-bold text-2xl"
-      gameInfo.addEventListener("mouseover", ()=>{ gameInfo.className = "float-right text-blue-600 font-bold text-2xl" })
-      gameInfo.addEventListener("mouseout", ()=>{ gameInfo.className = "float-right text-yellow-400 font-bold text-2xl" })
+    if ( blueDroppability == true && gameOver == false ){
+      // redsTurn = true
+      // gameMessage.innerHTML = "RED'S TURN"
+      // gameMessage.className = "float-left text-red-600 text-xl font-bold"
+      // gameInfo.className = "float-right text-yellow-400 font-bold text-2xl"
+      // gameInfo.addEventListener("mouseover", ()=>{ gameInfo.className = "float-right text-blue-600 font-bold text-2xl" })
+      // gameInfo.addEventListener("mouseout", ()=>{ gameInfo.className = "float-right text-yellow-400 font-bold text-2xl" })
 
-      blueScore.className = "m-auto text-blue-900 text-2xl font-bold"
-      redScore.className = "m-auto text-red-600 text-2xl font-bold border-4 border-red-600 rounded-lg px-2"
-      dropBlueSphereMaterial.opacity = .2
-      dropRedSphereMaterial.opacity = 1
+      // blueScore.className = "m-auto text-blue-900 text-2xl font-bold"
+      // redScore.className = "m-auto text-red-600 text-2xl font-bold border-4 border-red-600 rounded-lg px-2"
+      // dropBlueSphereMaterial.opacity = .2
+      // dropRedSphereMaterial.opacity = 1
       draggable.geometry.dispose
       draggable.material.dispose
       scene.remove( draggable )
@@ -783,8 +784,8 @@ window.addEventListener('pointerdown', event => {
       setTimeout(function(){
         blueDroppability = false
       }, 10)
-      bluesScore += adjustedPoints
-      blueScore.innerHTML = "RED: " + bluesScore
+      redsScore += adjustedPoints
+      blueScore.innerHTML = redsScore
     }
     movementPlane.position.copy(0, 0, 0) //reposition movementPlane out of the way
     holdingTile = false;
