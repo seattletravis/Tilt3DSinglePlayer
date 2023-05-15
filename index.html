@@ -10,62 +10,50 @@
     <div class="flex h-screen bg-black select-none">
       <!-- LEFT SIDE PANEL CONTROLS AND INFO -->
       <div id="sidePanel" class="border-4 border-green-600 w-1/2 flex flex-col justify-center px-2">
-        <!-- TRAVIS.LAMBERTE.COM -->
-        <h1 class="text-center text-purple-600 px-4 text-2xl">TRAVIS.LAMBERTE.COM</h1><br>
-
+        <a class="text-center text-blue-600 px-4 text-2xl" title="Return to Arcade!" id="enterButton"
+        href="../arcade/index.html">TRAVIS.LAMBERTE.COM</a><br>
         <!-- NAVAGATION PANE AND SCORE BOARD PANEL-->
-        <!-- <div class="flex h-screen justify-center items-center "> -->
         <div class="flex justify-center items-center">
 
-          <h1 id="redScore" class="m-auto text-purple-600 text-2xl font-bold">SCORE:</h1>
-
-          <!-- <div class="">
-            <div class="flex font-bold justify-center">
-              <div class="flex flex-col items-center">
-                <a title="Return to Game Menu!" id="enterButton" 
-                class="" 
-                href="../arcade/index.html">ENTER</a> <br>
-                <a title="Take Me to the Git Repository!" id="githubButton"
-                class="" 
-                href="https://github.com/seattletravis/J3nga.git">GITHUB</a>
-              </div>
-            </div>
-          </div> -->
-
-          <h1 id="blueScore" class="m-auto text-purple-600 text-2xl font-bold">0</h1>
+          <h1 id="redScore" class="m-auto text-blue-600 text-2xl font-bold">SCORE: 0</h1>
 
         </div> <br>
-        <!-- <h1 id="gameInfo" title="GAME RULES - CLICK HERE!" class="float-center text-yellow-400 font-bold text-2xl">?</h1> -->
-        <!-- GAME CONTROLS PANEL -->
         <div class="flow-root">
-          <h1 id="gameControl" class="float-center text-center text-purple-600 text-xl font-bold">Current Round 0 of 10</h1>
-          <h1 id="gameInfo" title="GAME RULES - CLICK HERE!" class="float-right text-yellow-400 font-bold text-2xl">?</h1>
+          <h1 id="gameControl" class="float-center text-center text-blue-600 text-xl font-bold">Round 0 of 10</h1>
+          <h1 id="averageScore" class="float-center text-center text-blue-600 text-xl font-bold">Average: 0</h1>
+
+          <h1 id="gameInfo" title="GAME MENU!" class="float-right text-yellow-400 font-bold text-2xl">?</h1>
         </div>
+
         <div class="flex flex-col items-center border-2 border-green-600 rounded-lg">
-
-          <br>
-          <H2 class="text-green-600 text-xl px-8">HOVER OVER CONTROLS: </H2>
-          <br>
-
-          <!-- LOOKING FOR THE CLASSES FOR THE BUTTONS? - LOOK IN MAIN.JS LINE ~150 -->
-          <div class=" flex justify-center items-center text-green-600 font-bold">
-
-            <div id="leftSideButtons" class="w-1/2">
-              <div class="flex flex-col items-center">
-                <h3 id="buttonUp">UP</h3>
-                <div class="flex">
-                  <h3 id="buttonLeft">LEFT</h3>   
-                  <h3 id="buttonRight">RIGHT</h3>
+          <table></table>
+          <div id="hoverOverControls" class="">
+            <br>
+            <H2 class="text-green-600 text-xl px-8">HOVER OVER CONTROLS: </H2>
+            <br>
+  
+            <!-- LOOKING FOR THE CLASSES FOR THE BUTTONS? - LOOK IN MAIN.JS LINE ~150 -->
+            <div class=" flex justify-center items-center text-green-600 font-bold">
+  
+              <div id="leftSideButtons" class="w-1/2">
+                <div class="flex flex-col items-center">
+                  <h3 id="buttonUp">UP</h3>
+                  <div class="flex">
+                    <h3 id="buttonLeft">LEFT</h3>   
+                    <h3 id="buttonRight">RIGHT</h3>
+                  </div>
+                  <h3 id="buttonDown">DOWN</h3>
                 </div>
-                <h3 id="buttonDown">DOWN</h3>
               </div>
-            </div>
+  
+              <div id="rightSideButtons" class="w-1/2 flex justify-center flex-col items-center">
+                <h3 id="buttonIn">IN</h3>
+                <h1 class="text-center text-green-600 px-8">ZOOM</h1>
+                <h3 id="buttonOut">OUT</h3>
+              </div>
 
-            <div id="rightSideButtons" class="w-1/2 flex justify-center flex-col items-center">
-              <h3 id="buttonIn">IN</h3>
-              <h1 class="text-center text-green-600 px-8">ZOOM</h1>
-              <h3 id="buttonOut">OUT</h3>
-            </div>
+          </div>
+          
 
           </div>
 

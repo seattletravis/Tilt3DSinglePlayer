@@ -26,9 +26,7 @@ gameInfo.addEventListener("mouseout", ()=>{ gameInfo.className = "float-right te
 
 gameInfo.addEventListener("click", function() {
   alert("Red player goes first & then each player takes turns. \nClick to grab a tile & release to drop tile.\nYou may grab & drop multiple tiles during your turn.\nRelease a tile over your bubble to score points & end your turn.\nBe Careful! If the round top-block goes too far off center… \nKa-bloo-ee! The tower explodes and the game ends.\nUse the HOVER OVER CONTROLS to move camera postion,\nor (“a, s, d, w” - Left, Down, Right, Up & “i, o” - In, Out.\)\nScoring:\nScore range is 0-100 points per turn.\nThe more off-center the top-block is, the less points are scorable\n\(as indicated by the “MAX SCORE” readout\) \nTIP: Nudge the tower back into the center to score more points.");
-}
-
-)
+})
 
 //create physics engine - initialize CANNON
 const physicsWorld = new CANNON.World({
@@ -174,17 +172,6 @@ buttonRight.className = btnRight
 buttonUp.className = btnUp
 buttonIn.className = btnIn
 buttonOut.className = btnOut
-// buttonEnter.className = btnEnter
-// buttonGithub.className = btnGithub
-
-// repeatWhileMouseOver(buttonEnter, blueEnter, 10)
-// function blueEnter() {
-//   enterButton.className = 'text-green-600 bg-blue-600 font-bold text-center border-4 border-green-600 inline-block text-2xl px-4 rounded-full'
-// }
-// repeatWhileMouseOver(buttonGithub, blueGithub, 10)
-// function blueGithub() {
-//   githubButton.className = 'text-green-600 bg-blue-600 font-bold text-center border-4 border-green-600 inline-block text-2xl px-4 rounded-full'
-// }
 
 //Hover Controls for Camera Controls
 function repeatWhileMouseOver(element, action, milliseconds) {
@@ -200,8 +187,6 @@ function repeatWhileMouseOver(element, action, milliseconds) {
     buttonUp.className = btnUp
     buttonIn.className = btnIn
     buttonOut.className = btnOut
-    // buttonEnter.className = btnEnter
-    // buttonGithub.className = btnGithub
     clearInterval(interval);
   });
 }
@@ -314,16 +299,12 @@ tableLegVisualBody.quaternion.copy(tableLegBody.quaternion)
 const dropSphereGeopmetry = new THREE.SphereGeometry(sphereSize, 15, 15)
 const dropRedSphereMaterial = new THREE.MeshPhysicalMaterial({ 
   color: 0xe44b8d,
-  // transparent: true,
   metalness: 0.1,
-  // opacity: 1,
   roughness: 0.4,
 })
 const dropBlueSphereMaterial = new THREE.MeshPhysicalMaterial({ 
   color: 0xe44b8d,   
-  // transparent: true,
   metalness: 0.1,
-  // opacity: 0.3,
   roughness: 0.4,
 })
 let redDrop = new THREE.Mesh(dropSphereGeopmetry, dropRedSphereMaterial)
@@ -375,7 +356,9 @@ function createBlock(blockName, blockPosition, blockShape, blockMeshArray){
     blockName.position.set(blockPosition.X, blockPosition.Y, blockPosition.Z);
     physicsWorld.addBody(blockName)  
     blockPhysicsArray.push(blockName)//add the blocks to List blockPhysicsArray
-    const roundedBoxGeometry = new RoundedBoxGeometry(blockShape.L*2, blockShape.H*2, blockShape.W*2, 10, .04)
+    // const roundedBoxGeometry = new RoundedBoxGeometry(blockShape.L*2, blockShape.H*2, blockShape.W*2, 10, .04)
+    const roundedBoxGeometry = new THREE.BoxGeometry(blockShape.L*2, blockShape.H*2, blockShape.W*2)
+
     blockName = new THREE.Mesh(
       // new THREE.BoxGeometry(blockShape.L*2, blockShape.H*2, blockShape.W*2),
       roundedBoxGeometry,
@@ -400,8 +383,6 @@ const blockToBlockContact = new CANNON.ContactMaterial(
 physicsWorld.addContactMaterial(blockToBlockContact);
 
 const resetMeter = document.getElementById('resetMeter')
-
-// create top block function -------------------///////////////////////WORKING HERE!!!!!
 const topBlockTexture = new THREE.TextureLoader().load('./tower_images/wood.jpg')
 const mass = 0.00001;
 const topBlock = new CANNON.Body({
@@ -424,7 +405,6 @@ topBlockMesh.quaternion.copy(topBlock.quaternion)
 
 
 //get mid x and z of topblock center
-let redsTurn = true
 let resetButtonPressed = false
 const gameMessage = document.getElementById('gameControl')
 const maxScore = document.getElementById('maxScore')
@@ -433,6 +413,12 @@ const dangerMeterText = document.getElementById('dangerMeterText')
 
 dangerMeterText.style.color = 'rgb(0, 0, 255'
 lineVisual.material.color.setRGB(0, 0, 255)
+
+function winGame(){
+  if (currentRound < 10) { return }
+  gameOver = true
+  gameMessage.innerText = "YOU WIN!!!"
+}
 
 //Get center of the tower and end game code
 function getCenterOfTopBlock(){
@@ -453,19 +439,7 @@ function getCenterOfTopBlock(){
     resetButtonPressed = true
     gameOver = true
     explodeTower()
-    // if (redsScore > bluesScore){
-    //   gameMessage.innerHTML = "RED WINS - BLUE DROOLS!"
-    //   gameMessage.className = "float-left text-red-600 text-xl font-bold"
-    //   gameInfo.className = "float-right text-yellow-400 font-bold text-2xl"
-    // }else if (redsScore < bluesScore){
-    //   gameMessage.innerHTML = "BLUE WINS - BETTER LUCK NEXT TIME RED!"
-    //   gameMessage.className = "float-left text-blue-600 text-xl font-bold"
-    //   gameInfo.className = "float-right text-yellow-400 font-bold text-2xl"
-    // }else{
-    //   gameMessage.innerHTML = "DRAW - PLAY AGAIN?"
-    //   gameMessage.className = "float-left text-yellow-400 text-xl font-bold"
-    //   gameInfo.className = "float-right text-yellow-400 font-bold text-2xl"
-    // }
+    gameMessage.innerText = "YOU LOSE - Lasted " + currentRound + " of 10"
   }
 }
 
@@ -570,7 +544,7 @@ for (let i = 0; i < blockPhysicsArray.length; i++){
   blockPhysicsArray[i].id = blockVisualArray[i].userData.name
 }
 
-//Return blockBody when from blockMesh 
+//Return blockBody from blockMesh object info
 function getBody(meshUserName){
   let blockName = meshUserName.userData.name
   let blockId = blockPhysicsArray.find(x=> x.id === blockName)
@@ -683,8 +657,6 @@ window.addEventListener('pointerdown', event => {
   if (found.length > 0 && found[0].object.userData.draggable){
     wakeUpBlocks() //Make a call to the wakeUpBlocks Function
     draggable = found[0].object
-    // draggable.material.transparent = true;
-    // draggable.material.opacity = 0.5;
     holdingTile = true;
     const hitPoint = getHitPoint(event.clientX, event.clientY, draggable, camera)
     if (!hitPoint){ return }
@@ -716,10 +688,11 @@ window.addEventListener('pointerdown', event => {
     }
   })
   
-  const blueScore = document.getElementById('blueScore')
+  // const blueScore = document.getElementById('blueScore')
   const redScore = document.getElementById('redScore')
+  const averageScore = document.getElementById('averageScore')
   let redsScore = 0
-  let bluesScore = 0
+  let currentRound = 0
   //When Release Mouse Clicker, show tile that's being dropped
   window.addEventListener('pointerup', event => {
     isDragging = false
@@ -740,18 +713,8 @@ window.addEventListener('pointerdown', event => {
           blueDroppability = true;
       };
     }
-    if ( redDroppability == true && gameOver == false ){
-      // redsTurn = false
-      // gameMessage.innerHTML = "BLUE'S TURN"
-      // gameMessage.className = "float-right text-blue-900 text-xl font-bold"
-      // gameInfo.className = "float-left text-yellow-400 font-bold text-2xl"
-      // gameInfo.addEventListener("mouseover", ()=>{ gameInfo.className = "float-left text-blue-600 font-bold text-2xl" })
-      // gameInfo.addEventListener("mouseout", ()=>{ gameInfo.className = "float-left text-yellow-400 font-bold text-2xl" })
 
-      // redScore.className = "m-auto text-red-600 text-2xl font-bold"
-      // blueScore.className = "m-auto text-blue-900 text-2xl font-bold border-4 border-blue-900 rounded-lg px-2"
-      // dropBlueSphereMaterial.opacity = 1
-      // dropRedSphereMaterial.opacity = .3
+    if ( (redDroppability == true || blueDroppability == true) && gameOver == false ){
       draggable.geometry.dispose
       draggable.material.dispose
       scene.remove( draggable )
@@ -759,34 +722,15 @@ window.addEventListener('pointerdown', event => {
       moveBody.position.set(0, -100, 2)
       setTimeout(function(){
         redDroppability = false
-      }, 10)
-      redsScore += adjustedPoints
-      blueScore.innerHTML = redsScore
-      // redScore.innerHTML = "RED: " + redsScore
-    }
-    if ( blueDroppability == true && gameOver == false ){
-      // redsTurn = true
-      // gameMessage.innerHTML = "RED'S TURN"
-      // gameMessage.className = "float-left text-red-600 text-xl font-bold"
-      // gameInfo.className = "float-right text-yellow-400 font-bold text-2xl"
-      // gameInfo.addEventListener("mouseover", ()=>{ gameInfo.className = "float-right text-blue-600 font-bold text-2xl" })
-      // gameInfo.addEventListener("mouseout", ()=>{ gameInfo.className = "float-right text-yellow-400 font-bold text-2xl" })
-
-      // blueScore.className = "m-auto text-blue-900 text-2xl font-bold"
-      // redScore.className = "m-auto text-red-600 text-2xl font-bold border-4 border-red-600 rounded-lg px-2"
-      // dropBlueSphereMaterial.opacity = .2
-      // dropRedSphereMaterial.opacity = 1
-      draggable.geometry.dispose
-      draggable.material.dispose
-      scene.remove( draggable )
-      const moveBody = getBody(draggable)
-      moveBody.position.set(0, -100, 2)
-      setTimeout(function(){
         blueDroppability = false
       }, 10)
       redsScore += adjustedPoints
-      blueScore.innerHTML = redsScore
+      redScore.innerHTML = "SCORE: " + redsScore
+      currentRound += 1
+      averageScore.innerText = "Average: " + Math.round(redsScore / currentRound) + " Points/Tile"
+      gameMessage.innerText = "Round " + currentRound + " of 10"
     }
+
     movementPlane.position.copy(0, 0, 0) //reposition movementPlane out of the way
     holdingTile = false;
     return;
@@ -811,6 +755,7 @@ function animate() {
   linkPhysics()
   renderer.render( scene, camera );
   getCenterOfTopBlock()
+  winGame()
 }
 
 animate();
