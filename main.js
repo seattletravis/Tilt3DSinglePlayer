@@ -21,11 +21,11 @@ let blockSleepSpeed = .2
 let resetSensitivity = 16
 
 const gameInfo = document.getElementById("gameInfo")
-gameInfo.addEventListener("mouseover", ()=>{ gameInfo.className = "float-right text-blue-600 font-bold text-2xl" })
-gameInfo.addEventListener("mouseout", ()=>{ gameInfo.className = "float-right text-yellow-400 font-bold text-2xl" })
+gameInfo.addEventListener("mouseover", ()=>{ gameInfo.className = "text-green-600 font-bold border-4 border-green-600 bg-blue-600 inline-block rounded-full px-6" })
+gameInfo.addEventListener("mouseout", ()=>{ gameInfo.className = "text-green-600 font-bold border-4 border-green-600 bg-yellow-400 inline-block rounded-full px-6" })
 
 gameInfo.addEventListener("click", function() {
-  alert("Red player goes first & then each player takes turns. \nClick to grab a tile & release to drop tile.\nYou may grab & drop multiple tiles during your turn.\nRelease a tile over your bubble to score points & end your turn.\nBe Careful! If the round top-block goes too far off center… \nKa-bloo-ee! The tower explodes and the game ends.\nUse the HOVER OVER CONTROLS to move camera postion,\nor (“a, s, d, w” - Left, Down, Right, Up & “i, o” - In, Out.\)\nScoring:\nScore range is 0-100 points per turn.\nThe more off-center the top-block is, the less points are scorable\n\(as indicated by the “MAX SCORE” readout\) \nTIP: Nudge the tower back into the center to score more points.");
+  console.log("Going Back to Main Menu!!")
 })
 
 //create physics engine - initialize CANNON
@@ -229,7 +229,7 @@ scene.add( light );
 var panoGeometry = new THREE.SphereGeometry( 50, 60, 40 );
   panoGeometry.scale( - 1, 1, 1 );
   var panoMaterial = new THREE.MeshBasicMaterial( {
-    map: new THREE.TextureLoader().load( './tower_images/pano1.jpg' )
+    map: new THREE.TextureLoader().load( './tower_images/pano3.jpg' )
   } );
   var panoMesh = new THREE.Mesh( panoGeometry, panoMaterial );
   panoMesh.position.set(0, 0, 0)
@@ -298,12 +298,12 @@ tableLegVisualBody.quaternion.copy(tableLegBody.quaternion)
 //Drop Markers Make 2 Drop Tile Markers for Scoring Points
 const dropSphereGeopmetry = new THREE.SphereGeometry(sphereSize, 15, 15)
 const dropRedSphereMaterial = new THREE.MeshPhysicalMaterial({ 
-  color: 0xe44b8d,
+  color: 0x0000ff,
   metalness: 0.1,
   roughness: 0.4,
 })
 const dropBlueSphereMaterial = new THREE.MeshPhysicalMaterial({ 
-  color: 0xe44b8d,   
+  color: 0x0000ff,   
   metalness: 0.1,
   roughness: 0.4,
 })
@@ -417,7 +417,8 @@ lineVisual.material.color.setRGB(0, 0, 255)
 function winGame(){
   if (currentRound < 10) { return }
   gameOver = true
-  gameMessage.innerText = "YOU WIN!!!"
+  gameRound.innerText = "YOU WIN!!!"
+  // gameStatus.innerText = "YOU WIN!!!"
 }
 
 //Get center of the tower and end game code
@@ -439,7 +440,8 @@ function getCenterOfTopBlock(){
     resetButtonPressed = true
     gameOver = true
     explodeTower()
-    gameMessage.innerText = "YOU LOSE - Lasted " + currentRound + " of 10"
+    gameRound.innerText = "YOU LOSE!!!"
+    // gameStatus.innerText = "YOU LOSE!!!"
   }
 }
 
@@ -562,6 +564,7 @@ function wakeUpBlocks(){
     // }
   }
 }
+
 // setInterval(() => { wakeUpBlocks() }, sleepInterval);
 
 //explode tower and display end of game info
@@ -691,6 +694,7 @@ window.addEventListener('pointerdown', event => {
   // const blueScore = document.getElementById('blueScore')
   const redScore = document.getElementById('redScore')
   const averageScore = document.getElementById('averageScore')
+  const scoreList = []
   let redsScore = 0
   let currentRound = 0
   //When Release Mouse Clicker, show tile that's being dropped
@@ -726,9 +730,11 @@ window.addEventListener('pointerdown', event => {
       }, 10)
       redsScore += adjustedPoints
       redScore.innerHTML = "SCORE: " + redsScore
+      scoreList.push(adjustedPoints + " ")
       currentRound += 1
-      averageScore.innerText = "Average: " + Math.round(redsScore / currentRound) + " Points/Tile"
-      gameMessage.innerText = "Round " + currentRound + " of 10"
+      averageScore.innerText = "Average: " + Math.round(redsScore / currentRound) + " Points"
+      gameMessage.innerText = "Scores: " + scoreList
+      gameRound.innerText = "Round " + currentRound + " of 10"
     }
 
     movementPlane.position.copy(0, 0, 0) //reposition movementPlane out of the way
@@ -756,6 +762,7 @@ function animate() {
   renderer.render( scene, camera );
   getCenterOfTopBlock()
   winGame()
+  topBlock.sleepState = 0
 }
 
 animate();

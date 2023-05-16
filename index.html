@@ -17,12 +17,15 @@
 
           <h1 id="redScore" class="m-auto text-blue-600 text-2xl font-bold">SCORE: 0</h1>
 
-        </div> <br>
+        </div>
         <div class="flow-root">
-          <h1 id="gameControl" class="float-center text-center text-blue-600 text-xl font-bold">Round 0 of 10</h1>
+          <!-- <h1 id="gameStatus" class="float-center text-center text-blue-600 text-xl font-bold"></h1> -->
+          <h1 id="gameRound" class="float-center text-center text-blue-600 text-xl font-bold">Round 0 of 10</h1>
           <h1 id="averageScore" class="float-center text-center text-blue-600 text-xl font-bold">Average: 0</h1>
-
-          <h1 id="gameInfo" title="GAME MENU!" class="float-right text-yellow-400 font-bold text-2xl">?</h1>
+          <h1 id="gameControl" class="float-center text-center text-blue-600 text-xl font-bold">Scores: 0</h1><br>
+          <div  class="flex flex-col items-center">
+            <h1 id="gameInfo" title="GAME MENU!" class="text-green-600 font-bold border-4 border-green-600 bg-yellow-400 inline-block rounded-full px-6">menu</h1>
+          </div><br>
         </div>
 
         <div class="flex flex-col items-center border-2 border-green-600 rounded-lg">
@@ -61,9 +64,9 @@
           <H1 class="text-white px-8">RESET: </H1> -->
           <br>
           <div class="px-8 flex flex-col items-center">
-              <button id="button1" title="Restack" class="font-bold border-4 border-white text-yellow-400 bg-red-900 border-yellow-400 inline-block px-4 py-1 rounded-full">RESET TOWER</button>
+              <button id="button1" title="Restack" class="font-bold border-4 border-green-600 text-green-600 bg-yellow-400 inline-block px-4 py-1 rounded-full">RESET TOWER</button>
               <br>
-              <h1 id="dangerMeterText" class="text-red-900 text-2xl">DANGER METER</h1>
+              <h1 id="dangerMeterText" class="text-blue-900 text-2xl">DANGER METER</h1>
               <h1 id="maxScore" class="text-yellow-400">(MAX SCORE: 100)</h1>
               <input id="resetMeter" type="range" class="accent-red-900" min="0" max="10" step="0.01"> 
             </div>
