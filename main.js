@@ -69,7 +69,7 @@ const buttonRight = document.getElementById('buttonRight')
 const buttonIn = document.getElementById('buttonIn')
 const buttonOut = document.getElementById('buttonOut')
 let radialDistance = camera.position.x
-let angleAugment = .82
+let angleAugment = 0.90
 let cameraAngle = 2 * Math.PI * (0.5 + angleAugment)
 
 camera.position.x = radialDistance * Math.cos(cameraAngle)
