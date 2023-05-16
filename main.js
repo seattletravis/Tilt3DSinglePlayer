@@ -162,8 +162,6 @@ const btnRight = 'text-green-600  border-4 border-green-600 bg-yellow-400 inline
 const btnUp = 'text-green-600  border-4 border-green-600 bg-yellow-400 inline-block py-1 rounded-full px-8'
 const btnIn = 'text-green-600  border-4 border-green-600 bg-yellow-400 inline-block py-1 rounded-full px-8'
 const btnOut = 'text-green-600  border-4 border-green-600 bg-yellow-400 inline-block py-1 rounded-full px-8'
-const btnEnter = 'text-green-600 bg-yellow-400 font-bold text-center border-4 border-green-600 inline-block text-2xl px-4 rounded-full'
-const btnGithub = 'text-green-600 bg-yellow-400 font-bold text-center border-4 border-green-600 inline-block text-2xl px-4 rounded-full'
 
 //send classes to html
 buttonDown.className = btnDown
@@ -198,6 +196,7 @@ document.addEventListener("keypress", function onEvent(event) {
   else if (event.key === "s") { moveCameraDown(); moveCameraDown() }
   else if (event.key === "i") { moveCameraIn() }
   else if (event.key === 'o') { moveCameraOut() }
+  else if (event.key === 'r') { resetTower() }
   else { return }
 });
 
