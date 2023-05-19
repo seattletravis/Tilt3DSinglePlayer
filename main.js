@@ -4,7 +4,7 @@ import { Flip } from "gsap/Flip";
 import { EaselPlugin } from "gsap/EaselPlugin";
 import { TextPlugin } from "gsap/TextPlugin";
 import * as THREE from 'three';
-import { RoundedBoxGeometry } from './node_modules/three/examples/jsm/geometries/RoundedBoxGeometry.js';
+// import { RoundedBoxGeometry } from './node_modules/three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import * as CANNON from 'cannon-es';
 // import CannonDebugger from 'cannon-es-debugger';
 // import { space } from 'postcss/lib/list';
@@ -703,7 +703,6 @@ window.addEventListener('pointerdown', event => {
       clickMouse.y = -(event.clientY / window.innerHeight) * 2 + 1;
       raycaster.setFromCamera( clickMouse, camera );
       const found = raycaster.intersectObjects( scene.children );
-
       for(let i = 0; i < found.length; i++){
         if (found[i].object == redDrop && !redDroppability){
           redDroppability = true;
@@ -731,7 +730,6 @@ window.addEventListener('pointerdown', event => {
       gameMessage.innerText = "Scores: " + scoreList
       gameRound.innerText = "Round " + currentRound + " of 10"
     }
-
     movementPlane.position.copy(0, 0, 0) //reposition movementPlane out of the way
     holdingTile = false;
     return;
