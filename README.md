@@ -46,6 +46,12 @@ npm run dev
 ### *Vite will return a local web link in the terminal, hold down Ctrl + click link to view the page in developer mode*
 <br>
 
+### *if you experience a resolve error with Three-JS, type:*
+
+```
+npm install three
+```
+
 ### *To build for Vite optimized production, use:*
 ```
 npm run build
