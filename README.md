@@ -26,7 +26,12 @@ git clone https://github.com/seattletravis/Tilt3DSinglePlayer.git
 ```
 <br>
 
-### *To open project in the default editor, type:*
+### *To open project in the default editor change into the directory, type:*
+```
+cd Tilt3DSinglePlayer/
+```
+
+### *Then type:*
 ```
 code . 
 ```

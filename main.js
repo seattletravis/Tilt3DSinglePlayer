@@ -1,8 +1,8 @@
 import './style.css'
-import { gsap } from "gsap";
-import { Flip } from "gsap/Flip";
-import { EaselPlugin } from "gsap/EaselPlugin";
-import { TextPlugin } from "gsap/TextPlugin";
+// import { gsap } from "gsap";
+// import { Flip } from "gsap/Flip";
+// import { EaselPlugin } from "gsap/EaselPlugin";
+// import { TextPlugin } from "gsap/TextPlugin";
 import * as THREE from 'three';
 // import { RoundedBoxGeometry } from './node_modules/three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import * as CANNON from 'cannon-es';
@@ -10,7 +10,7 @@ import * as CANNON from 'cannon-es';
 // import { space } from 'postcss/lib/list';
 // import { TweenMax } from 'gsap/gsap-core';
 
-gsap.registerPlugin(Flip, EaselPlugin, TextPlugin);
+// gsap.registerPlugin(Flip, EaselPlugin, TextPlugin);
 
 //create three objects - initialize THREE
 const scene = new THREE.Scene();
