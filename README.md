@@ -2,7 +2,7 @@
 ### *You can play Tilt3d here: [PLAY TILT3D](https://travis.lamberte.com/tilt3dMenu/index.html)* 
 <br>
 
-### *Tilt3d is a web browser puzzle game for 1 or 2 players. It includes a scoring system to make the game more challenging. Til3d is written in JavaScript, HTML and is built using Vite, npm, and node to manage packages and build the application. Tailwind is used for styling.*
+### *Tilt3d is a web browser puzzle game for 1 or 2 players. It includes a scoring system to make the game more challenging. Til3d is written in JavaScript, HTML and is built using Vite, npm, and node to manage packages and build the application. Tailwind is used for styling. *
 
 <br>
 
